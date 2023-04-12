@@ -14,8 +14,9 @@ func _ready():
 	print("Is online:", IS_ONLINE)
 	print("Steam ID:", STEAM_ID)
 	print("Is owned:", IS_OWNED)
-
-
+	
+	Steam.connect("overlay_toggled", _overlay_Toggled)
+	
 func _process(delta):
 	Steam.run_callbacks()
 	pass
@@ -25,3 +26,7 @@ func _on_button_pressed():
 	print(Steam.isOverlayEnabled())
 	Steam.activateGameOverlayInviteDialog(STEAM_ID)
 	pass # Replace with function body.
+
+func _overlay_Toggled(is_toggled: bool) -> void: 
+	print("Overlay toggled: "+str(is_toggled))
+	
